@@ -187,7 +187,7 @@ STRcat(String *st, char *cp)
      len = strlen(cp) + STRlen(st);
 
      temp = (char *) malloc(sizeof(char) * len);
-     strcpy(temp, STRget(st));
+     strcpy(temp, (char *)STRget(st));
      strcat(temp, cp);
 
      STRset(st, temp);

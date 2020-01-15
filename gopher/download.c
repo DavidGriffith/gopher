@@ -194,7 +194,7 @@ Download_file(GopherObj *gs)
      int    choice;
      char   tmpfilename[512], *cp;
      char   command[512];
-     char   *curcwd;
+     char   *curcwd = NULL;
      int    start, end;
      struct stat buf;
 
@@ -360,7 +360,7 @@ BuiltinDownload(char *dirname)
      struct dirent *entry = NULL;
      struct stat buf;
      int fcount=0, choice;
-     char *tmppath;
+     char *tmppath = NULL;
      GopherObj *gs;
 
 
