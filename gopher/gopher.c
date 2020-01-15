@@ -2300,9 +2300,10 @@ main(int argc, char **argv)
 			 GScpy(tempgs, GDgetEntry(OldDirs[iLevel-1], 
 				     GDgetCurrentItem(OldDirs[iLevel-1])-1));
 	       }
-	       else
+	       else {
 		    if ((curitem = GDgetCurrentItem(OldDirs[iLevel-1])) <= 0)
 			 curitem = 1;
+	       }
 		    GScpy(tempgs, GDgetEntry(CurrentDir, 
 			  GDgetCurrentItem(CurrentDir)-1));
 
