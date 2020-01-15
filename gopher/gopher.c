@@ -1087,7 +1087,7 @@ showfile(GopherObj *ZeGopher)
 	       return;
 #endif
 	       if ((tmpfile = popen(inputline+1, "w")) == NULL) {
-                   char buf[75];
+                   char buf[530];
                    snprintf(buf, sizeof(buf) - 1,
                             Gtxt("Coultn't execute %s", 81), inputline);
                    CursesErrorMsg(buf);
