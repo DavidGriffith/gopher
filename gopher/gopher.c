@@ -1011,7 +1011,6 @@ do_sound(GopherStruct *ZeGopher)
      CursesErrorMsg(Gtxt("Sorry, this machine doesn't support sounds",159));
 #else
      int sockfd;
-     BOOLEAN Waitforchld = FALSE;
 
      if ((sockfd = GSconnect(ZeGopher)) <0) {
 	  check_sock(sockfd, GSgetHost(ZeGopher), GSgetPort(ZeGopher));
@@ -1022,9 +1021,6 @@ do_sound(GopherStruct *ZeGopher)
      GStransmit(ZeGopher, sockfd, NULL, NULL, NULL);
      
      /** Okay, it's cool, we can fork off **/
-
-     if (SOUNDCHILD != 0)
-	  Waitforchld = TRUE;
 
      if ( (SOUNDCHILD = fork()) < 0)
 	  ;/* Fork Error */
@@ -1435,38 +1431,27 @@ controlc_old(int sig)
 RETSIGTYPE
 sizechange(int sig)
 {
-     int lines, cols;
-     
 #ifdef  TIOCGWINSZ
+     int lines, cols
      static struct      winsize zewinsize;        /* 4.3 BSD window sizing */
-#endif
 
      lines = LINES;
      cols  = COLS;
-     
-#ifdef  TIOCGWINSZ
+
      if (ioctl(0, TIOCGWINSZ, (char *) &zewinsize) == 0) {
 	  lines = zewinsize.ws_row;
 	  cols  = zewinsize.ws_col;
-     } else {
-#endif
-	  /* code here to use sizes from termcap/terminfo, not yet... */
-	  ;
-#ifdef  TIOCGWINSZ
      }
 
      if (lines != LINES || cols != COLS) {
 	  LINES = lines;
 	  COLS  = cols;
 	  CURresize(CursesScreen);
-     
 	  scline(-1, 1, CurrentDir);
      }
 
      if (signal(SIGWINCH, sizechange)==SIG_ERR)
 	  perror("signal died:\n"), CleanupandExit(-1);
-
-	    
 #endif
 
 }
@@ -2806,7 +2791,7 @@ Load_Index_or_Dir(GopherObj *ZeGopher, char *Searchmungestr)
 {
      int failed = 0;
      int sockfd;
-     int i, numbytes;
+     int numbytes;
      static char DirTitle[512];
      GopherDirObj *NewDir = NULL;
 
@@ -2873,7 +2858,7 @@ Load_Index_or_Dir(GopherObj *ZeGopher, char *Searchmungestr)
 	  CurrentDir = NewDir;
 	  
      }
-     i = closenet(sockfd);
+     closenet(sockfd);
      return(failed);
 }
 

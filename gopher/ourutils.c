@@ -913,7 +913,7 @@ GStoFile(GopherObj *gs, FILE *f, char *view, int (*twirlfn) (/* ??? */))
      int numread, sockfd;
      char buf[1024], newbuf[1024];
      int bytemethod;
-     int line = 0, i;
+     int line = 0;
 
      /*** Check for gopher+ and multiple views ***/
 
@@ -973,7 +973,6 @@ GStoFile(GopherObj *gs, FILE *f, char *view, int (*twirlfn) (/* ??? */))
 			 }
 			 else {
 			      char *colonpos = strchr(buf+5,':');
-			      i = '\0';
 			      if (colonpos != NULL && *(colonpos-1) != cso_click) {
 				   fprintf(f, "-------------------------------------------------------\n");
 				   cso_click = *(colonpos-1);

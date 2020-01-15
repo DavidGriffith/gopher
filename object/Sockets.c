@@ -421,9 +421,6 @@ SOCKaccept(int s, struct sockaddr_in we)
 {
      int            sockfd    = 0;
      socklen_t      len       = sizeof(struct sockaddr);
-     unsigned short tem;
-
-     tem = ntohs(we.sin_port);
 
      Debugmsg("Here we go...\n");
 

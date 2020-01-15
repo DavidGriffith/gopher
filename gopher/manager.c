@@ -220,17 +220,11 @@ DisplayTitle(GopherObj *gs, int maxlength, boolean dogplus)
 {
      char type;
      char *c, *d;
-     char *size;
      int  m,n;
      char temp[1024];
 
      type = GSgetType(gs);
      d = GSgetTitle(gs);
-
-     if (GSisGplus(gs) && GSgplusInited(gs)) {
-
-	  size = VIgetSize(GSgetView(gs, 0));
-     }
 
      if (GSisAsk(gs))
 	  maxlength -= 5;

@@ -501,7 +501,8 @@ CURsetGraphicsChars(CursesObj *cur, char *termtype)
      /** use ALTCHARSET if termcap or terminfo knows how **/
      if (cur->canUseACS) {
 
-	  char *term, *chars;
+	  char *term;
+/*	  char *chars; */	/* This might be useful later.  DG */
 	  char termname[20];
 	  int count=0;
 
@@ -514,7 +515,7 @@ CURsetGraphicsChars(CursesObj *cur, char *termtype)
 	       strcpy(termname, "vtxxx");  /* name in CURgraphicChars[] */
 
 	  while ((term = CURgraphicChars[count++]) != NULL) {
-	       chars = CURgraphicChars[count++];
+/*	       chars = CURgraphicChars[count++]; */ /* This might be useful later.  DG */
 	       if (strcmp(termname, term) == 0) {
 #ifdef ACS_BSSB
 		    cur->Box_hline  = ACS_HLINE;
@@ -1786,7 +1787,7 @@ CURChoice(CursesObj *cur, char *WinTitle, char **Choices, char *Prompt, int Defa
      int    k;
      int    MaxChoiceWidth = 0;
      int    NumChoices = 0;
-     int    NumPages;
+/*     int    NumPages; */	/* This might be useful later.  DG */
      WINDOW *TempWin;
      int    TopChoice;
      int    WinLines;
@@ -1819,7 +1820,8 @@ CURChoice(CursesObj *cur, char *WinTitle, char **Choices, char *Prompt, int Defa
      }
 
      ChoicesPerPage = min(NumChoices, LINES - 6);
-     NumPages = NumChoices / ChoicesPerPage + 1;
+     /* This might be useful later.  DG */
+/*     NumPages = NumChoices / ChoicesPerPage + 1; */
      WinLines = ChoicesPerPage + 6;
 
      CurrentChoice = (DefaultChoice > -1) ? DefaultChoice : 0;
