@@ -764,7 +764,7 @@ Gripe(GopherObj *gs)
 	  }
      }
 
-     strncpy(email, cp+1, sizeof(email));
+     strncpy(email, cp+1, sizeof(email) - 1);
      cp = strrchr(email, '>');
      if (cp != NULL)
 	  *cp = '\0';
